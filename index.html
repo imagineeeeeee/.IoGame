@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My .io Game</title>
+<title>Shrinkr.io</title>
 <style>
 body {
   background-color: black;
@@ -19,33 +19,29 @@ canvas {
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var player = {
-  x: 0,
-  y: 0,
-  width: 10,
-  height: 10,
-  speed: 5
-};
+var snakes = [];
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "white";
-  ctx.fillRect(player.x, player.y, player.width, player.height);
+  for (var i = 0; i < snakes.length; i++) {
+    ctx.fillStyle = snakes[i].color;
+    ctx.fillRect(snakes[i].x, snakes[i].y, snakes[i].width, snakes[i].height);
+  }
 }
 
 window.addEventListener("keydown", function(event) {
   switch(event.keyCode) {
     case 38: // Up arrow
-      player.y -= player.speed;
+      snakes[0].y -= snakes[0].speed;
       break;
     case 40: // Down arrow
-      player.y += player.speed;
+      snakes[0].y += snakes[0].speed;
       break;
     case 37: // Left arrow
-      player.x -= player.speed;
+      snakes[0].x -= snakes[0].speed;
       break;
     case 39: // Right arrow
-      player.x += player.speed;
+      snakes[0].x += snakes[0].speed;
       break;
   }
 });
